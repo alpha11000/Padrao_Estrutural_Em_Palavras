@@ -5,3 +5,4 @@ C:\Users\Cliente\source\repos\Dict_Rewrite\Dict_Rewrite\obj\Debug\Dict_Rewrite.c
 C:\Users\Cliente\source\repos\Dict_Rewrite\Dict_Rewrite\obj\Debug\Dict_Rewrite.csproj.CoreCompileInputs.cache
 C:\Users\Cliente\source\repos\Dict_Rewrite\Dict_Rewrite\obj\Debug\Dict_Rewrite.exe
 C:\Users\Cliente\source\repos\Dict_Rewrite\Dict_Rewrite\obj\Debug\Dict_Rewrite.pdb
+C:\Users\Cliente\source\repos\Dict_Rewrite\Dict_Rewrite\obj\Debug\Dict_Rewrite.csproj.AssemblyReference.cache

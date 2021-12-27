@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 namespace Dict_Rewrite
 {
-    internal class Rewrite {
+    internal class Rewriter{
 
-        private SortedList<string, referenceCode> references = new SortedList<string, referenceCode>();
+        //private SortedList<string, referenceCode> references = new SortedList<string, referenceCode>();
+        private Dictionary<string, referenceCode> references = new Dictionary<string, referenceCode>();
         private int wordsCount = 0;
 
         public void setReferences(string[] _dict)
@@ -135,6 +136,22 @@ namespace Dict_Rewrite
             
             return words;
         }
+
+/*        public referenceCode findReferenceByCode(string code)
+        {
+
+            referenceCode refC = null;
+
+            try
+            {
+                refC = references.Find(i => i.getRefCode() == code);
+            }catch(Exception e)
+            {
+                refC = null;
+            }
+            
+            return refC;
+        }*/
 
         public referenceCode findReferenceByCode(string code)
         {

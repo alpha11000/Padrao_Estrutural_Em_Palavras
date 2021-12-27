@@ -11,6 +11,8 @@ namespace Dict_Rewrite
     {
         static void Main(string[] args)
         {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
             Rewriter rw = new Rewriter();
 
             Console.WriteLine("Importando palavras...");
@@ -28,8 +30,13 @@ namespace Dict_Rewrite
                 Console.WriteLine("Não foi encontrado um dicionário com as referencias, gerando um novo...");
                 string[] content = FileUtil.openFile(name);
 
+                watch.Start();
+
                 Console.WriteLine("Gerando e armazenando referencias...");
                 rw.addVariousReferences(content);
+
+                Console.WriteLine("Tempo levado com SortedList: " + watch.Elapsed + " s");
+                watch.Stop();
 
                 Console.WriteLine("Gerando a estrutura do novo dicionário...");
                 string[] structuredString = rw.getStructuredString();

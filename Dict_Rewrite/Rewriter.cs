@@ -1,30 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Dict_Rewrite
 {
     internal class Rewriter
     {
-        List<referenceCode> references = new List<referenceCode>();
+        //List<referenceCode> references = new List<referenceCode>();
+
+        private SortedList<string, referenceCode> references = new SortedList<string, referenceCode>();
+        private int wordsCont = 0;
 
         public void setReferences(string[] _dict)
         {
-            int i = -1;
+            string lastValue = "";
 
-            foreach(string _ref in _dict)
+            foreach(string word in _dict)
             {
-                if (_ref.Contains("#"))
+                if (word.Contains("#"))
                 {
-                    string value = _ref.Substring(1);
+                    string value = word.Substring(1);
 
                     referenceCode refCode = new referenceCode(value);
-                    references.Add(refCode);
-                    i++;
+                    references.Add(value, refCode);
+                    lastValue = value;
                     continue;
                 }
 
-                references[i].addElement(_ref);
+                references[lastValue].addElement(word);
             }
         }
 
@@ -42,40 +44,38 @@ namespace Dict_Rewrite
                 addToReference(word);
                 i++;
 
-                percent = (100 * i) / s;
+                percent = calculatePercentage(i, s);
 
-                if(percent != lastPercent)
+                if (percent != lastPercent)
                 {
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
                     Console.WriteLine(percent.ToString() + " %");
                     lastPercent = percent;
                 }
             }
+
         }
 
-        public string getStructuredString()
+        public string[] getStructuredString()
         {
-            string structuredString = "";
+            List<string> structuredString = new List<string>();
 
-            Console.WriteLine("gerando codigo: ");
+            Console.WriteLine("gerando a partir da referencia: ");
 
-            foreach(referenceCode r in references)
+            foreach(var k in references)
             {
-                structuredString += "#" + r.getRefCode() + "\n";
+                Console.SetCursorPosition(32, Console.CursorTop - 1);
+                Console.WriteLine(k.Key + "\t\t");
 
-                Console.SetCursorPosition(16, Console.CursorTop - 1);
-                Console.WriteLine(r.getRefCode() + "\t\t");
-
-                foreach(string s in r.getElements())
-                {
-                    structuredString += s + "\n";
-                }
+                structuredString.Add("#" + k.Key);
+                structuredString.AddRange(k.Value.getElements());
 
             }
 
+
             Console.WriteLine("Pronto");
 
-            return structuredString;
+            return structuredString.ToArray();
         }
 
         public void addToReference(string word)
@@ -94,7 +94,8 @@ namespace Dict_Rewrite
             var newReference = new referenceCode(wordCode);
             newReference.addElement(word);
 
-            references.Add(newReference);
+            references.Add(wordCode, newReference);
+            wordsCont++;
 
         }
 
@@ -137,10 +138,10 @@ namespace Dict_Rewrite
             return words;
         }
 
-        public referenceCode findReferenceByCode(string code)
+/*        public referenceCode findReferenceByCode(string code)
         {
 
-            referenceCode refC;
+            referenceCode refC = null;
 
             try
             {
@@ -151,6 +152,29 @@ namespace Dict_Rewrite
             }
             
             return refC;
+        }*/
+
+        public referenceCode findReferenceByCode(string code)
+        {
+
+            referenceCode refC;
+
+            try
+            {
+                refC = references[code];
+            }
+            catch (Exception e)
+            {
+                refC = null;
+            }
+
+            return refC;
+        }
+
+        public static int calculatePercentage(int atual, int total)
+        {
+            int percent = (100 * atual) / total;
+            return percent;
         }
 
     }

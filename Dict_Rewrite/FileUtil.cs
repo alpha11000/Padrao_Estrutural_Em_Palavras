@@ -26,9 +26,9 @@ namespace Dict_Rewrite
             return words;
         }
 
-        public static void writeToFile(string fileName, string content)
+        public static void writeToFile(string fileName, string[] content)
         {
-            File.WriteAllText(fileName, content);
+            File.WriteAllLines(fileName, content);
         }
     }
 }

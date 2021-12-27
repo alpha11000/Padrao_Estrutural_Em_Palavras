@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="_dict\pt-br\br-sem-acentos.txt" />
+    <Content Include="_dict\pt-br\br-sem-acentosC.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

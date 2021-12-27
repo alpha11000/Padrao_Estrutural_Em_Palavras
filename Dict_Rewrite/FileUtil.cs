@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dict_Rewrite
 {
@@ -11,7 +7,16 @@ namespace Dict_Rewrite
     {
         public static string[] openFile(string fileName)
         {
-            string[] words = File.ReadAllLines(fileName);
+
+            string[] words;
+
+            try
+            {
+                words = File.ReadAllLines(fileName);
+            }catch(IOException e)
+            {
+                return new string[0];
+            }
 
             for(int i = 0; i < words.Length; i++)
             {

@@ -27,7 +27,10 @@ namespace Dict_Rewrite
 
             if(_dict.Length == 0) 
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Não foi encontrado um dicionário com as referencias, gerando um novo...");
+                Console.ResetColor();
+                
                 string[] content = FileUtil.openFile(name);
 
                 watch.Start();
@@ -35,16 +38,26 @@ namespace Dict_Rewrite
                 Console.WriteLine("Gerando e armazenando referencias...");
                 rw.addVariousReferences(content);
 
-                Console.WriteLine("Tempo levado com SortedList: " + watch.Elapsed + " s");
-                watch.Stop();
 
                 Console.WriteLine("Gerando a estrutura do novo dicionário...");
                 string[] structuredString = rw.getStructuredString();
+
+                Console.WriteLine("Tempo levado na geração: " + watch.Elapsed + " s");
+                watch.Stop();
+
                 Console.WriteLine("Salvando no arquivo...");
                 FileUtil.writeToFile(saveName, structuredString);
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Salvo com sucesso.");
+                Console.ResetColor();
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Dicionário de frequência encontrado. Importando-o...");
+                Console.ResetColor();
+
                 rw.setReferences(_dict);
             }
 

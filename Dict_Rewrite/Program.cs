@@ -58,7 +58,7 @@ namespace Dict_Rewrite
                 Console.WriteLine("Dicionário de frequência encontrado. Importando-o...");
                 Console.ResetColor();
 
-                rw.setReferences(_dict);
+                rw.setReferencesFromString(_dict);
             }
 
             while (true)

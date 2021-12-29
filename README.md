@@ -1,0 +1,2 @@
+#Detecção de padrões estruturais em palavras
+Esse projeto busca encontrar palavras que sejam estruturalmente parecidas à palavra passada pelo usuário, considerando como principais fatores de busca a quantidade, repetiçoes e posicionamento das letras. Podendo ser útil principalmente para detectar possíveis valores que podem ser atribuidos à uma palavra criptografada por meio de criptografias simples, como Cifra de Substituição, Cifra de Caesar e Criptografia XOR.
